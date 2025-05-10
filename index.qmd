@@ -1,0 +1,296 @@
+---
+title: "Social Media Censorship and Political Action in Democracies"
+author: "Norah Rami"
+institute: "University of Pennsylvania"
+
+date: last-modified
+toc: true
+
+bibliography: bibliography.bib
+
+format: 
+  html:
+    self-contained: true
+
+editor: source
+---
+
+## Introduction
+
+Social media is a political battle between activists wishing to speak out against repression and governments wishing to control dissent. Canadian political scientist, Ronald Deibert defines this tension as the era of “contested access” [@deibert_access_2012]. Social media has the potential to increase information access and encourage collective organizing. Even in the face of government crackdowns in Saudi Arabia, activists took to Twitter to criticize the ruling family and call for regime change [@pan_how_2020. Most scholars credit the internet, with a particular emphasis on Facebook, as catalyzing the Arab Spring uprising [@ruijgrok_web_2017]. Significant literature has identified social media’s ability to create a network of diverse people with similar grievances and enable them to recruit, organize, and coordinate action [@meserve_terrorism_2020]. Social media allows networked movement to reach and persuade peripheral individuals to join and act.
+
+Facebook CEO, Mark Zuckerberg’s grand claimed that, “Social media will, left to its own devices, bring about a new era of freedom and social progress” [@horowitz_broken_2023]. Yet social media’s incendiary potential is not just limited to progressive causes Facebook, for example, has turned into a breeding ground for hate crimes, suicide, and misinformation. Facebook, a keystone of the internet in Myanmar, had become a lightning rod for hateful and incendiary posts, and by virtue of its algorithmic system, promoted posts that led to the 2017 Rohingya genocide. [@horowitz_broken_2023]. Following the 2020 election, Facebook became a watering hole for the #StopTheStealMovement, which culminated in the 2021 January 6th attack on the U.S. Capitol. In India, social media platforms have been weaponized by the leading Hindu nationalist party to organize hate crimes and mob violence. As an external human rights consultant hired by Facebook concluded, social media platforms have “become a means for those seeking to spread hate and cause harm” [@horowitz_broken_2023].
+
+Given social media’s disruptive potential, governments have invested in tools to censor, monitor, and control social media [@deibert_authoritarianism_2015]. In some cases, these repressive measures have remained ineffective, while in others government attacks on free expression on social media platforms have resulted in documented self-censorship, neutralizing the potential of these platforms to be utilized as tools for resistance and information-sharing [@ong_online_2021; @zeitzoff_how_2017]. Much of the scholarship on social media censorship has focused on authoritarian regimes [@reuter_online_2015] based on the assumption that in democratic regimes, there is a far wider network of information exchange available [@ruijgrok_web_2017]. However, it is important to recognize that formal democracies also engage in policies of social media censorship and monitoring. For example, the United States has deployed the federal government in widespread social media surveillance campaigns \[@noauthor_social_nodate. Towing a delicate line, democratic countries must balance their interest to preserve the democratic norm of free speech while mitigating the dangerous consequences of social media.
+
+Democracies tend to work within legal frameworks to remove digital content [@meserve_terrorism_2020]. While there have been recorded instances of populist leaders in democracies resorting to social censorship to silence their critics, social media censorship has also been utilized as a legitimate tool for addressing violence and ensuring public safety [@ong_online_2021; @meserve_terrorism_2020]. In a working paper from the Digital Society Project, political science professors Stephen Meserve and Daniel Pemstein identified a correlation between terrorist attacks and increased social media censorship in liberal democracies such as France [@meserve_terrorism_2020].
+
+This project focuses on social media repression in formal (electoral) democracies. I am interested in interrogating the relationship between social media repression and the utilization of social media. Social media can be utilized for a variety of political organizing activities, from petition signing to calls for explicit violence. Beyond merely changing the amount of political organizing that occurs on social media platforms, I am also interested in seeing if the character of this organizing changes as well. This research raises implications for how the act of censorship of social media in and of itself challenges both political conversations online, but more importantly, the role that it plays in defining political action offline.
+
+## Theory and Hypotheses
+
+In many cases, state censorship has been shown to be effective in stifling political discourse [@chan_government_2024]. Through censorship and monitoring, governments seek to impose a cost on political action, making it more difficult to consider or be aware enough to participate in political actions deemed undesirable by those in power. Moreover, censorship and monitoring online spaces have the potential to result in biased information ecosystems biased towards those in power and against oppositional voices. In some nations that employ social media censorship, a “backlash” effect has occurred. Social media censorship has had a documented effect on increasing the self-censorship of moderate actors, who have more to lose [@ong_online_2021]. As a result, we will see that only more radical voices will persist online in terms of calling for political action. Thus, the political landscape on social media will become more extremist.
+
+However, it is important to note that social media surveillance and censorship in undemocratic nations are often paired with legal action, imprisonment, physical violence, and the online harassment of those who criticize the government, thus raising the “cost” of political engagement to levels that threaten one’s personal safety [@chan_government_2024].
+
+[![Figure 1: A scatterplot of two indicators: arrests for political content and government social media monitoring. A high score here means less arrests on the first indicator, and less monitoring on the second indicator (Digital Society Project).](monitoring_arrests.png)](https://digitalsocietyproject.org/social-media-monitoring-arrests/)
+
+Figure 1 illustrates a relationship between social media monitoring and arrests in \[YEAR\] based on the V-Dem data set. While the two indicators are positively correlated, the countries located in Quadrant II are outliers to the positive correlation between social media monitoring and social media arrests. These countries demonstrate comprehensive social media censorship, yet employ minimal arrests for posting online content. Democratic countries such as Singapore, Great Britain, and the United States all fall into this category. 
+
+By mitigating punishment for political content, while maintaining social media monitoring, these countries might be able to avoid the negative repercussions of social media censorship, maintaining an open forum for discussion while restricting violent content. Individuals might continue freely post political content as they do not maintain a fear of repercussions for doing so.  
+
+In democratic nations, social media censorship and monitoring might not operate under the same paradigms as in authoritarian nations. As compared to authoritarian nations, social media monitoring and censorship in democracies have a different goal. Thus, the virtue of being a democracy will effect the impact and usage of social media censorship. Censorship alone does not impact political engagement, but rather the environment in which it is applied. Thus, I propose,
+
+**H1: Social media censorship in democratic countries will result in a lesser reduction of political action than in authoritarian countries.**
+
+Rather than crush dissent, these measures seek to ensure public safety, targeting the most violent actions online. Moreover, the lack of arrests and costly consequences for expressing one’s political opinion online might mitigate the backlash effect, as moderate actors will still feel empowered to express their opinions. I additionally propose: 
+
+**H2: In democratic nations, the presence of increased social media censorship will reduce extremist mobilization.**
+
+These hypotheses assert, in other words, that social media censorship, when employed under democratic premises, has the potential to fulfill its intended duty of quelling violence while maintaining a free forum of political speech.
+
+## Research Design
+
+### Data
+
+To measure social media censorship and monitoring, I will be utilizing variables from the VDem Dataset—an expert-coded data set that accounts for 202 countries. The variables of interest I am examining are from the Digital Society Survey, designed by the Digital Society Project.  Social media, as coded for in this measurement, includes both publicly visible and private messaging platforms, including Facebook, Flickr, Friendstar, Google+, Instagram, Myspace, LinkedIn, Twitter, VKontakte, Weibo, Signal Slack, Snapchat, and WhatsApp. Censorship is does not include censorship of child pornography, military and intelligency sectrets, or defamatory speech, unless these measures are used as a pretext for censoring political information or opinions. Country behavior is coded on an ordinal scale of 0-4 for a variety of different traits related to digital society. 
+
+The measurement captures the subjective perception of experts about censorship within countries. It has the distinct drawback of not being based on quantifiable country behavior. However, in 2020 Digital Society Working Paper found that V-Dem scores for democratic countries were corroborated by publicly available Facebook and Google data for take-down request [@meserve_terrorism_2020]. While V-Dem data extends back to the early 2000s, however, the data on social media use is spotty in the early 2000s [@meserve_terrorism_2020]. Thus, I will limit my data usage from 2009-2024.
+
+Additionally, I will be utilizing V-Dem’s Regimes of the World (RoW) measure to classify countries on a scale of democratic to authoritarian.
+
+In order to measure the impact of social media measurement on political engagement, I will be utilizing individual-level data from the World Values Survey 7. It covers 120 countries, and country samples are representative of the population (18 and above, living in private households) based on multi-stage stratified sampling and questionnaires administered face-to-face in their native language. Additionally, I will be utilizing V-Dem's expert-coded measurement of the types of uses of social media.
+
+The datasets for measuring country-level censorship and individual political participation are the same as those utilized in the paper "Government Digital Repression and Political Engagement: A Cross-National Multilevel Analysis" which concluded that higher levels of social media censorship caused lower political participation [@chan_government_2024]. Thus, I will be able to directly engage with these past findings.
+
+### Variables
+
+The variables of interest for this project are:
+
+-   *Government social media monitoring (v2smgovsmmon)*
+
+    This variable measures the extent to which the government surveils social media content. I plan to create an index variable combining government social media shut down in practice, social media alternatives, social media monitoring, and social media censorship in practice. Lower values indicate higher rates of monitoring. This is common in V-Dem data, so that higher values indicate more democracy. In order to remedy this for my analysis I will reverse the scale so that my monitoring values is 1 - VDEM_monitoring.
+
+-   *Government social media censorship in practice (v2smgovsmcenprc)*
+
+    This variable measures the extent to which the government actively censors political social media content. Lower values indicate higher rates of censorship. This is common in V-Dem data, so that higher values indicate more democracy. In order to remedy this for my analysis I will reverse the scale so that my censorship values is 1 - VDEM_censorship.
+
+-   *Types of organization through social media (v2smorgtypes)*
+
+    These variables measure the presence of various modes of political organizing through social media. VDem codes for: petition signing, voter turnout, street protests, strikes/labor actions, riots, organized rebellion, vigilante justice, terrorism, and ethnic cleansing/genocide.
+
+-   *Regimes of the world – the RoW measure (v2x_regime)*
+
+    This variable categorizes countries as either closed autocracies, electoral autocracies, electoral democracies, or liberal democracies. For this project I will be defining electoral democracies and liberal democracies as democratic states.
+
+-   *Average people’s use of social media to organize offline action (v2smorgavgact)*
+
+    This variable measures specifically average people’s use of social media to organize offline violence. A higher value indicate a higher usage of social media.
+
+-   *Elites’ use of social media to organize offline action (v2smorgelitact)*
+
+    This variable measures specificially “elites” usage of social media to organize political action. A higher value indicate a higher usage of social media.
+
+I will create a z-score index variable combining social media monitoring and social media censorship called "Social media monitoring and censorship." I will also create a z-score index variable combining the average person's use of social media to organize political action and the elite person's use of social media to organize political action called "Use of social media to organize political action."
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#Loading in My Data
+library (vdemdata)
+library(tidyverse)
+df_vdem <- vdem %>%
+  select(country = country_name, year, monitoring_or = v2smgovsmmon, censorship_or = v2smgovsmcenprc, arrests = v2smarrest, av_action = v2smorgavgact, el_action = v2smorgelitact, socmed_petition = v2smorgtypes_0, socmed_voting = v2smorgtypes_1, socmed_protest = v2smorgtypes_2, socmed_strike = v2smorgtypes_3, socmed_riot = v2smorgtypes_4, socmed_rebellions = v2smorgtypes_5, socmed_vigilante = v2smorgtypes_6, socmed_terrorism = v2smorgtypes_7, socmed_genocide = v2smorgtypes_8, socmed_other = v2smorgtypes_9, regime_type = v2x_regime) %>%
+    filter(year >= 2009) %>%
+  #Naming Regime Types
+   mutate(
+    regime_category = case_when(
+      regime_type %in% c(2, 3) ~ "Democracy",
+      regime_type %in% c(0, 1) ~ "Non-democracy",
+      TRUE ~ NA_character_
+    )
+   ) %>%
+#revert censorship
+mutate(
+    censorship = 1 - censorship_or,  # Reverse censorship scale
+    monitoring = 1 - monitoring_or
+) %>%
+
+#creating the additive index variable for political action
+  mutate(
+    action = as.numeric(av_action) + 
+                                as.numeric(el_action), 
+    ) %>%
+#creating the z-score versions of each variable 
+  mutate(
+#z-score for political action
+    z_action = scale(as.numeric(action)),
+#z-score for censorship and monitoring
+    z_cens_mon = scale(rowMeans(cbind(
+      monitoring,
+      censorship
+    ), na.rm = TRUE)), 
+    z_cens_mon_arrests = scale(rowMeans(cbind(
+      monitoring,
+      censorship,
+      arrests
+    ), na.rm = TRUE)),
+  ) 
+```
+
+*Figure 2: Descriptive Statistics of Variables* 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gt)
+#Data summary
+# 1. Censorship summary
+censorship_summary <- df_vdem %>%
+  group_by(regime_category) %>%
+  summarise(
+    mean = mean(censorship, na.rm = TRUE),
+    sd = sd(censorship, na.rm = TRUE),
+    range = max(censorship, na.rm = TRUE) - min(censorship, na.rm = TRUE)
+  )
+
+# 2. Monitoring summary
+monitoring_summary <- df_vdem %>%
+  group_by(regime_category) %>%
+  summarise(
+    mean = mean(monitoring, na.rm = TRUE),
+    sd = sd(monitoring, na.rm = TRUE),
+    range = max(monitoring, na.rm = TRUE) - min(monitoring, na.rm = TRUE)
+  )
+
+# 3. Action summary
+action_summary <- df_vdem %>%
+  group_by(regime_category) %>%
+  summarise(
+    mean = mean(action, na.rm = TRUE),
+    sd = sd(action, na.rm = TRUE),
+    range = max(action, na.rm = TRUE) - min(action, na.rm = TRUE)
+  )
+
+# Create a three tables
+censorship_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Descriptive Table of Censorship"
+  )
+monitoring_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Descriptive Table of Social Media Monitoring"
+  )
+
+action_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Descriptive Table of Political Action"
+  )
+
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+#Creating a World Map of Censorship
+library(ggplot2)
+library(maps)
+library(dplyr)
+
+world_map <- map_data("world")
+
+
+
+df_latest <- df_vdem %>%
+  group_by(country) %>%
+  filter(year == max(year, na.rm = TRUE)) %>%
+  ungroup()
+
+df_latest <- df_latest %>%
+  mutate(country = case_when(
+    country == "United States of America" ~ "USA",
+    country == "Russian Federation" ~ "Russia",
+    country == "United Kingdom" ~ "UK",
+    TRUE ~ country
+  ))
+
+map_df <- world_map %>%
+  left_join(df_latest, by = c("region" = "country"))
+
+
+ggplot(map_df, aes(long, lat, group = group)) +
+  geom_polygon(aes(fill = z_cens_mon), color = "white", size = 0.1) +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey90", name = "Censorship & Monitoring", breaks = c(min(map_df$z_cens_mon, na.rm = TRUE),
+             max(map_df$z_cens_mon, na.rm = TRUE)),
+  labels = c("Low censorship", "High censorship")) +
+  theme_minimal() +
+  labs(
+    title = "Figure 3: Social Media Monitoring & Censorship (Z-score)",
+    subtitle = "Latest available year per country (V-Dem)",
+    caption = "Source: V-Dem Dataset"
+  )
+```
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+#Country Changes
+countries_selected <- df_vdem %>%
+  filter(country %in% c("France", "Mexico", "United States of America", "Brazil", "Singapore", "Nigeria"), year >= 2009)
+
+
+ggplot(countries_selected, aes(x = year, y = z_cens_mon, color = country)) +
+  geom_line(size = 1) +
+  geom_point() +
+  theme_minimal() +
+  labs(
+    title = "Figure 4: Social Media Censorship in Multiple Countries (2009–2023)",
+    x = "Year",
+    y = "Z-score: Censorship & Monitoring",
+    color = "Country",
+    caption = "Based on the data, there is variation across both years and countries for social media censorship. These countries were chosen to differences of social media censorship for democracies across the world."
+  )
+
+```
+
+### Empirical Extension
+
+Clearly, as indicated by Figure 2 and 3, non-democracies tend to censor social media at far higher rates than democracies. Thus, in order to ensure that it is not the ***extent*** of censorship driving the difference between democracies and non-democracies, but rather the actual regime. If there is still a greater impact of social media censorship on political action in non-democracies than democracies, that we can argue that the ***extent*** of censorship is not a confounder.
+
+### Regression Model
+
+I will use interaction terms to measure how democracy impacts I will be using country-level fixed-effects and year-level fixed effects to account for potential confounders. Additionally, I will lag my independent variable, social media censorship, to strengthen my causal inference so that censorship precedes political action.
+
+In short,
+
+**Dependent Variable:** "Use of social media to organize political action,"
+
+**Main Independent Variable:** "Social media monitoring and censorship"
+
+**Moderator:** Democracy
+
+**Interaction Term:** "Social media monitoring and censorship" x Democracy
+
+$$ PoliticalAction_it = β₀ + β₁·Censorship_{i,t−1} + β₂·Democracy_it + β₃·(Censorship_{i,t−1} × Democracy_it) + γ·X_it + α_i + δ_t + ε_it $$
+
+For H2, I will create a table and measure each coefficient of each political action included in the VDem dataset: petition signing, voter turnout, street protests, strikes/labor actions, riots, organized rebellion, vigilante justice, terrorism, and ethnic cleansing/genocide.
+
+## Findings
+
+## Empirical Extension
+
+## Discussion and Policy Implications
+
+## References
