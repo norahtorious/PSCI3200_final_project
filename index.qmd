@@ -398,7 +398,7 @@ R2 is .911 which is relatively strong, explaining on 91.1% of the data.
 
 ## Empirical Extension
 
-###Censorship vs. Monitoring
+### Censorship vs. Monitoring
 
 I will run my fixed effects, interaction term model on censorship and monitoring separately to see if different type of social media surveillance have different impacts on political action. I will continue to lag censorship and monitoring, and measure them as z-scores to standardize their comparison.
 
