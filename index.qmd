@@ -43,12 +43,6 @@ In democratic nations, social media censorship and monitoring might not operate 
 
 **H1: Social media censorship in democratic countries will result in a lesser reduction of political action than in authoritarian countries.**
 
-Rather than crush dissent, these measures seek to ensure public safety, targeting the most violent actions online. Moreover, the lack of arrests and costly consequences for expressing one’s political opinion online might mitigate the backlash effect, as moderate actors will still feel empowered to express their opinions. I additionally propose: 
-
-**H2: In democratic nations, the presence of increased social media censorship will reduce extremist mobilization.**
-
-These hypotheses assert, in other words, that social media censorship, when employed under democratic premises, has the potential to fulfill its intended duty of quelling violence while maintaining a free forum of political speech.
-
 ## Research Design
 
 ### Data
@@ -59,9 +53,7 @@ The measurement captures the subjective perception of experts about censorship w
 
 Additionally, I will be utilizing V-Dem’s Regimes of the World (RoW) measure to classify countries on a scale of democratic to authoritarian.
 
-In order to measure the impact of social media measurement on political engagement, I will be utilizing individual-level data from the World Values Survey 7. It covers 120 countries, and country samples are representative of the population (18 and above, living in private households) based on multi-stage stratified sampling and questionnaires administered face-to-face in their native language. Additionally, I will be utilizing V-Dem's expert-coded measurement of the types of uses of social media.
-
-The datasets for measuring country-level censorship and individual political participation are the same as those utilized in the paper "Government Digital Repression and Political Engagement: A Cross-National Multilevel Analysis" which concluded that higher levels of social media censorship caused lower political participation [@chan_government_2024]. Thus, I will be able to directly engage with these past findings.
+The datasets for measuring country-level censorship are the same as those utilized in the paper "Government Digital Repression and Political Engagement: A Cross-National Multilevel Analysis" which concluded that higher levels of social media censorship caused lower political participation [@chan_government_2024]. Thus, I will be able to directly engage with these past findings.
 
 ### Variables
 
@@ -104,13 +96,7 @@ df_vdem <- vdem %>%
   select(country = country_name, year, monitoring_or = v2smgovsmmon, censorship_or = v2smgovsmcenprc, arrests = v2smarrest, av_action = v2smorgavgact, el_action = v2smorgelitact, socmed_petition = v2smorgtypes_0, socmed_voting = v2smorgtypes_1, socmed_protest = v2smorgtypes_2, socmed_strike = v2smorgtypes_3, socmed_riot = v2smorgtypes_4, socmed_rebellions = v2smorgtypes_5, socmed_vigilante = v2smorgtypes_6, socmed_terrorism = v2smorgtypes_7, socmed_genocide = v2smorgtypes_8, socmed_other = v2smorgtypes_9, regime_type = v2x_regime) %>%
     filter(year >= 2009) %>%
   #Naming Regime Types
-   mutate(
-    regime_category = case_when(
-      regime_type %in% c(2, 3) ~ "Democracy",
-      regime_type %in% c(0, 1) ~ "Non-democracy",
-      TRUE ~ NA_character_
-    )
-   ) %>%
+  mutate(regime_binary = if_else(regime_type %in% c(2, 3), 1, 0)) %>%
 #revert censorship
 mutate(
     censorship = 1 - censorship_or,  # Reverse censorship scale
@@ -139,7 +125,10 @@ mutate(
   ) 
 ```
 
-*Figure 2: Descriptive Statistics of Variables* 
+*Figure 2: Descriptive Statistics of Variables*
+
+0 indicates non-democracy, 1 indicates democracy
+
 ```{r}
 #| echo: false
 #| warning: false
@@ -149,7 +138,7 @@ library(gt)
 #Data summary
 # 1. Censorship summary
 censorship_summary <- df_vdem %>%
-  group_by(regime_category) %>%
+  group_by(regime_binary) %>%
   summarise(
     mean = mean(censorship, na.rm = TRUE),
     sd = sd(censorship, na.rm = TRUE),
@@ -158,7 +147,7 @@ censorship_summary <- df_vdem %>%
 
 # 2. Monitoring summary
 monitoring_summary <- df_vdem %>%
-  group_by(regime_category) %>%
+  group_by(regime_binary) %>%
   summarise(
     mean = mean(monitoring, na.rm = TRUE),
     sd = sd(monitoring, na.rm = TRUE),
@@ -167,7 +156,7 @@ monitoring_summary <- df_vdem %>%
 
 # 3. Action summary
 action_summary <- df_vdem %>%
-  group_by(regime_category) %>%
+  group_by(regime_binary) %>%
   summarise(
     mean = mean(action, na.rm = TRUE),
     sd = sd(action, na.rm = TRUE),
@@ -239,8 +228,6 @@ ggplot(map_df, aes(long, lat, group = group)) +
   )
 ```
 
-
-
 ```{r}
 #| echo: false
 #| warning: false
@@ -267,7 +254,10 @@ ggplot(countries_selected, aes(x = year, y = z_cens_mon, color = country)) +
 
 ### Empirical Extension
 
-Clearly, as indicated by Figure 2 and 3, non-democracies tend to censor social media at far higher rates than democracies. Thus, in order to ensure that it is not the ***extent*** of censorship driving the difference between democracies and non-democracies, but rather the actual regime. If there is still a greater impact of social media censorship on political action in non-democracies than democracies, that we can argue that the ***extent*** of censorship is not a confounder.
+There are a number of potential limits in comparing democracies and autocracies. For example, these different regimes employ different mechanisms of social media censorship and enforcement. In order to strengthen my causal analysis between regime type and social media censorship, in my empirical extension, I will control for arrests for social media censorship consider how social media censorship and monitoring individually impact political action. One might argue that monitoring, a lighter mode of state social media control, might allow for greater political action, while one might continue to see negative repercussions under censorship. If my findings hold when these two modes are separately examined, that would strengthen my argument that regime types impact how public discourse is effected by social media censorship. 
+
+Additionally, in order to support my theory that democracies have different motivations for censorship, I will examine how different types of political action, such as petition signing, are impacted differently from the more extremist uses of social media. If we see more democratic modes of political actions have been left untouched while more extreme modes have been negatively impact, one could argue that social media censorship, when employed under democratic premises, has the potential to fulfill its intended duty of quelling violence while maintaining a free forum of political speech.
+
 
 ### Regression Model
 
@@ -289,8 +279,220 @@ For H2, I will create a table and measure each coefficient of each political act
 
 ## Findings
 
+**Basic Linear Regression**
+```{r}
+#| echo: false
+#| warning: false
+
+library(modelsummary)
+
+df_vdem <- df_vdem |>
+  group_by(country) |>
+  arrange(year, .by_group = TRUE) |>
+  mutate(lag_z_cens_mon = lag(z_cens_mon)) |>
+  ungroup()
+
+lin_model <- lm(z_action ~ lag_z_cens_mon, data = df_vdem)
+
+modelsummary(lin_model,
+             stars = TRUE, 
+             title = "Basic Linear Model",
+             output = "markdown"
+)
+
+ggplot(df_vdem, aes(x = lag_z_cens_mon, y = z_action)) +
+  geom_point(alpha = 0.5) +  # Optional: adds points to show data
+  geom_smooth(method = "lm", se = FALSE) +  # Adds a regression line for each regime type
+  labs(
+    title = "Impact of Lagged Censorship on Political Action by Regime Type",
+    x = "Lagged Censorship (Z-Score)",
+    y = "Political Action (Z-Score)"
+  ) +
+  theme_minimal()
+
+```
+
+*Interpretation*
+
+$\alpha$ When "Social media monitoring and censorship" is at zero the predicted z-score "Social media use for political action" is 0.037. This is statistically significant as the p-score is  0.37
+
+$\beta_1$ This means that increased social media censorship negatively and significantly associated with the use of social media to organize political action. This is statistically significant at a p-scoreof 0.001
+
+This model asserts that increases in censorship are correlated with lower levels of political action. While this is what you would expect to find, the model assumes that there is not a confounding variables. In reality, however, civil society protections, regime types, and the likelihoods of arrests for political content are all potential confounders. 
+
+However, R2 is .145 which is relatively week, explaining only 14.5% of the data. 
+
+
+```{r}
+
+ggplot(df_vdem, aes(x = lag_z_cens_mon, y = z_action, color = regime_binary)) +
+  geom_point(alpha = 0.5) +  # Optional: adds points to show data
+  geom_smooth(method = "lm", se = FALSE) +  # Adds a regression line for each regime type
+  labs(
+    title = "Figure 5: Impact of Lagged Censorship on Political Action by Regime Type",
+    x = "Lagged Censorship (Z-Score)",
+    y = "Political Action (Z-Score)",
+    color = "Regime Type"
+  ) +
+  theme_minimal()
+
+```
+
+
+However, as figure 5 illustrates when we run the regression based on regime type, the negative correlation is only exhibited for non-democracies. Thus, in order to analyze the unique impact regime type has on political action, I will utilize interaction terms in order to address my hypothesis.
+
+
+
+**Interaction Term**
+
+```{r}
+#| echo: false
+#| warning: false
+
+int_model <- lm(z_action ~ lag_z_cens_mon * regime_binary , data = df_vdem)
+
+modelsummary(int_model,
+             stars = TRUE, 
+             title = "Interaction Term Model",
+             output = "markdown"
+)
+
+df_vdem$regime_binary <- factor(df_vdem$regime_binary, labels = c("Non-Democracy", "Democracy"))
+
+
+
+
+```
+
+*Interpretation*
+$\alpha$: The expected use of social media for democracies with low social media censorship is .18 standard deviations above the mean. 
+
+$β1 = -0.432$ is the effect of censorship on the usage of social media to organize political action when regime type is held constant. For non-democracies, which we are considering the base regime type, 1-unit increase in social media censorship is associated with a statististially signficant decrease in social media use for offline political action (at a 1% level) which suggests social media censorship has a negative relationship with social media usage for offline political action.
+
+$\beta2 = 0.345$ This coefficient reflects the effect of regime type on social media usage for offline political action when censorship is held constant. There is a positive and statistically significant relationship between regime type and social media usage to organize offline political action. In other words, democracies show greater usage of social media for political action. This is statistically signficant at a 1% level. 
+
+
+$\beta_3 =  0.417$ the interaction term shows how the relationship how social media censorship differs for democracies versus non-democracies. While my hypothesis claimed that less of a repressive effect of social media censorship, this analysis shows an even stronger impact  in comparison to women. Rather than a decline in political action, we see that democracies actually experience an increase in social media use for political action when there are increased levels of social media monitoring and censorship. This is statistically signficant at a 1% level.
+
+However, R2 is .175 which is relatively week, explaining on 17.5% of the data. 
+
+**Fixed Effects**
+
+```{r}
+#| echo: false
+#| warning: false
+library(fixest)
+
+
+
+model_fe <- feols(z_action ~ lag_z_cens_mon * regime_binary | country + year, data = df_vdem)
+
+modelsummary(model_fe,
+             stars = TRUE,
+             title = "Fixed Effects Regression",
+             output = "markdown")
+
+```
+
+*Interpretation*
+$β1 =  0.018$ This coefficient reflect the impact of social media censorship on the usage of social media within countries over time, when regime type is held constant. Non-democratic countries, which we are considering the base regime type, whose political censorship increased above the sample mean had a 0.018 standard deviation increase in their usage of social media. This is not statistically significant. For non-democracies when controlling for country level changes over time, social media censorship results in no significant changes for offline political action. 
+
+$\beta2 = 0.148$ This coefficient reflects the effect of regime type in countries over time on social media usage for offline political action when censorship is held constant. When censorship is held constant, democratic countries experience social media usage for political action at a 0.148 standard deviations above the mean. This a a positive and statistically significant relationship at a 10% level between regime type and social media usage to organize offline political action. In other words, when controlling for country level effects, democracies show greater usage of social media for political action. This is statistically signficant at a 1% level. 
+
+
+$\beta_3 =   0.198$ the interaction term shows how the relationship how social media censorship differs for democratic countries versus non-democratic countries over time. Rather than a decline in political action, we see that democracies actually experience an increase in social media use for political action when there are increased levels of social media monitoring and censorship. This is not staistically significant
+
+R2 is .911 which is relatively strong, explaining on 91.1% of the data. 
+
+
 ## Empirical Extension
 
+###Censorship vs. Monitoring 
+
+I will run my fixed effects, interaction term model on censorship and monitoring separately to see if different type of social media surveillance have different impacts on political action. I will continue to lag censorship and monitoring, and measure them as z-scores to standardize their comparison. 
+```{r}
+#| echo: false
+#| warning: false
+
+library(fixest)
+
+df_vdem <- df_vdem |>
+  group_by(country) |>
+  arrange(year, .by_group = TRUE) |>
+  mutate(lag_censorship = lag(scale(as.numeric(censorship)))) |>
+  mutate(lag_monitoring = lag(scale(as.numeric(monitoring)))) |>
+  ungroup()
+
+model_censorship <- feols(z_action ~ lag_censorship * regime_binary | country + year, data = df_vdem)
+
+modelsummary(model_censorship,
+             stars = TRUE,
+             title = "Fixed Effects Regression: Censorship",
+             output = "markdown")
+
+model_monitoring <- feols(z_action ~ lag_monitoring * regime_binary | country + year, data = df_vdem)
+
+modelsummary(model_monitoring,
+             stars = TRUE,
+             title = "Fixed Effects Regression: Monitoring",
+             output = "markdown")
+
+
+
+```
+
+With both censorship and monitoring individually we see the same phenomenon, where within countries over time, social media censorship actually increases political action in democracies. This impact, however, is significantly lower---nearly negligible. However, it is statistically significant. Additionally, when we separate censorship and monitoring, the impact on non-democracies also disappears. While the larger trend remains, when we separate our index score, we see that the impact is reduced when we don't group social media monitoring and censorship together. 
+
+Additionally, to see how censorship impacts different types of social media organized political action differently. I will run my same regression over a z-score of the different types of uses of social media for political action. 
+
+```{r}
+library(dplyr)
+library(fixest)
+library(modelsummary)
+
+
+df_vdem <- df_vdem %>%
+  mutate(
+    z_socmed_petition   = scale(as.numeric(socmed_petition)),
+    z_socmed_voting     = scale(as.numeric(socmed_voting)),
+    z_socmed_protest    = scale(as.numeric(socmed_protest)),
+    z_socmed_strike     = scale(as.numeric(socmed_strike)),
+    z_socmed_riot       = scale(as.numeric(socmed_riot)),
+    z_socmed_rebellions = scale(as.numeric(socmed_rebellions)),
+    z_socmed_vigilante  = scale(as.numeric(socmed_vigilante)), 
+    z_socmed_terrorism = scale(as.numeric(socmed_terrorism)),
+    z_socmed_genocide = scale(as.numeric(socmed_genocide)),
+    z_socmed_other = scale(as.numeric(socmed_other))
+  )
+
+
+z_action_vars <- c(
+  "z_socmed_petition", "z_socmed_voting", "z_socmed_protest",
+  "z_socmed_strike", "z_socmed_riot", "z_socmed_rebellions", "z_socmed_vigilante" , "z_socmed_terrorism", "z_socmed_genocide", "z_socmed_other"
+)
+
+
+models <- lapply(z_action_vars, function(var) {
+  formula <- as.formula(paste(var, "~ lag_z_cens_mon * regime_binary + lag_z_cens_mon + regime_binary | country"))
+  feols(formula, data = df_vdem, cluster = ~country)
+})
+
+# Step 4: Clean model names
+names(models) <- gsub("z_socmed_", "", z_action_vars)
+
+# Step 5: Display regression table
+modelsummary(models,
+             title = "Effect of Lagged Censorship on Forms of Political Action (Standardized)",
+             stars = TRUE,
+             output = "markdown")
+
+```
+
+
 ## Discussion and Policy Implications
+
+
+Ideally, I additionally like to utilize some form of matching to compare countries of similar censorship scores. However, in this specific project, I was unable to carry out that test, although that could be a potential next step moving forward. 
+
 
 ## References
