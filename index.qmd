@@ -321,12 +321,17 @@ This model asserts that increases in censorship are correlated with lower levels
 However, R2 is .145 which is relatively week, explaining only 14.5% of the data.
 
 ```{r}
+#| echo: false
+#| warning: false
 
-ggplot(df_vdem, aes(x = lag_z_cens_mon, y = z_action, color = regime_binary)) +
+df_vdem$regime_cat <- factor(df_vdem$regime_binary, labels = c("Non-Democracy", "Democracy"))
+
+# Plot interaction effect of lag_z_cens_mon and regime_binary on z_action
+ggplot(df_vdem, aes(x = lag_z_cens_mon, y = z_action, color = regime_cat)) +
   geom_point(alpha = 0.5) +  # Optional: adds points to show data
   geom_smooth(method = "lm", se = FALSE) +  # Adds a regression line for each regime type
   labs(
-    title = "Figure 5: Impact of Lagged Censorship on Political Action by Regime Type",
+    title = "Impact of Lagged Censorship on Political Action by Regime Type",
     x = "Lagged Censorship (Z-Score)",
     y = "Political Action (Z-Score)",
     color = "Regime Type"
